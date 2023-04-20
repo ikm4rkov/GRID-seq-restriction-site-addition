@@ -1,17 +1,19 @@
 from sys import argv
 
-rest_site = 'AG'
+rest_site_first_half = 'AG'
+rest_site_second_half = 'CT'
+half_length = len(rest_site_first_half)
 
 def prt(m):
-    if len(m) == 0 or m[1][-3:-1] != rest_site:
+    if len(m) == 0 or m[1][(-1) * (half_length + 1):-1] != rest_site_first_half:
         return
     print(m[0][:-1])
-    print(m[1][:-1] + 'CT')
+    print(m[1][:-1] + rest_site_second_half)
     if m[2][0] == '+':
         print('+')
-        print(m[3][:-1] + m[3][-3:-1])
+        print(m[3][:-1] + m[3][(-1) * (half_length + 1):-1])
     else:
-        print(m[2][:-1] + m[2][-3:-1])
+        print(m[2][:-1] + m[2][(-1) * (half_length + 1):-1])
 
 f = open(argv[1], 'r')
 m = []
